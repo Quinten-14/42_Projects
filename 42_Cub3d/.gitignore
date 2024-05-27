@@ -1,0 +1,9 @@
+cub3D.dSYM
+*.o
+cub3D
+*.a
+obj/
+OBJS/
+mlx-test
+.DS_Store
+.vscode

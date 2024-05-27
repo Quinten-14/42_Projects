@@ -1,0 +1,11 @@
+#ifndef MAIN_H
+# define MAIN_H
+
+#include <iostream>
+#include <string>
+
+#include "class/ClapTrap.hpp"
+#include "class/ScavTrap.hpp"
+#include "class/FragTrap.hpp"
+
+#endif

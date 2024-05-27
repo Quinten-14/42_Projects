@@ -1,0 +1,41 @@
+NO textures/Asset-6.xpm
+SO textures/Asset-6.xpm
+EA textures/Asset-6.xpm
+WE textures/Asset-6.xpm
+
+DO textures/Door_Sliding_128x128.xpm
+
+ON textures/shotgun_buy.xpm
+TW textures/ar_buy.xpm
+
+ZO textures/enemy.xpm
+
+C 35,40,45
+F 35,30,30
+
+
+1Z1
+101
+1D11111  1Z1
+O0E000Z  101
+1111D11  101
+111000011001
+110000000001
+10000000001
+T000000001
+100001111
+11D11
+10001
+10001
+10001
+10001
+10001
+10001
+10001
+10001
+10001
+10001
+10001
+10001
+10001
+1Z1Z1

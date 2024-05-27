@@ -1,0 +1,6 @@
+{
+	XInitThreads_Leaks
+	Memcheck:Leak
+	...
+	fun:XInitThreads
+}
