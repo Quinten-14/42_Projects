@@ -119,3 +119,7 @@ Being super chill and a good talking point for 42 projects
 Jalal - [Github page](https://github.com/suspectedoceano) - [Youtube](https://www.youtube.com/@onaecO)
 
 Being the helping hand to a lot of new students and just the GOAT under the 42 Youtubers
+
+Anthony - [Github page](https://github.com/ahooghe)
+
+Finding even the smallest bugs and all that while not even using a debugger
