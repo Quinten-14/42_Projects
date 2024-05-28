@@ -101,16 +101,21 @@ These are all the projects I did for now but keep an eye on this repo to checkou
 ## Some more people I want to mention
 
 Lorenzo - [Github page](https://github.com/LorenzoDP2)
+
 For being an amazing Minishell teammate and A really chill guy
 
 Ella - [Github page](https://github.com/Ella-42)
+
 For being an amazing Cub3D teammate and always super helpful
 
 Elias - [Github page](https://github.com/STROBOLKOP)
+
 Being super helpful and really well educated on Neovim
 
 Pieter - [Github page](https://github.com/P-Claus)
+
 Being super chill and a good talking point for 42 projects
 
 Jalal - [Github page](https://github.com/suspectedoceano) - [Youtube](https://www.youtube.com/@onaecO)
+
 Being the helping hand to a lot of new students and just the GOAT under the 42 Youtubers
