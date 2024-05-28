@@ -63,3 +63,35 @@ A feature not a lot of people outside of the UNIX space know of it the ability t
 So far one of my favorite projects of the CommonCore. FdF lets you make a 3d map wireframe viewer. You get a bunch of files with maps in and you need to read them and make a nice graphical program for them. The graphical part is handled by MinilibX (X11 under the hood). So not one of the fancy options like Vulcan or openGL but still really powerful in the right hands. The only thing Minilibx isn't great at is performance but this is not the biggest deal breaker yet. The bonus of this project is super nice and also lets you make it so you can rotate the map and zoom in. Sadly I didn't do the bonus but I will revisit this project and do it that time.
  
  [Link to my FDF](https://github.com/Quinten-14/42_Projects/tree/master/42_Fdf)
+
+**Philosophers**
+
+Threads are a very important part of coding and computer science. So why not learn them by making the dining philosophers problem. A super precise project where the smallest bug can throw everything of and all of this while also constantly need to work about deadlocks. Writing this for faster computers isn't that hard but doing it so the campus computers also work fine with it and don't mess up the results is a real challenge. At the end it is all worth it when you can work with threads to make functions run at the same time and don't need to let them wait for another function to finish.
+
+[Link to my Philosophers](https://github.com/Quinten-14/42_Projects/tree/master/42_Philosophers)
+
+**Minishell**
+
+The biggest project possibly of the whole CommonCore. Minishell lets us create a simple version of bash. This is also the first group project. You and Your partner are required to build a few builtins and the environment system. Getting the input and then running the right commands. Using pipes and redirections when needed. This project really teaches you a lot and was so far the most fun I had coding. Here the knowledge I got from pipex really was helpful to make it all work. This project can be made on so many different ways. Even just parsing the input is done on countless different ways. Some people will go for a linked list of a string array, we went for an abstract syntax tree just because we wanted to work with something new. It's actually just a glorified linked list in our minds. But it was super helpful when it came to the execution of the commands and the redirections so it was probably the right call to use it.
+
+[Link to my Minishell](https://github.com/Quinten-14/42_Projects/tree/master/42_Minishell)
+
+[Link to my teammate](https://github.com/LorenzoDP2)
+
+**Netpractice**
+
+This is a really small project and it teaches us the very basics of networking. Using IP addresses and putting masks. Very small and they should go a bit deeper into it but at the end with your own will power you can go as deep into networking as you wish.
+
+**Cub3D**
+
+The final project of the CommonCore with the famous MinilibX library. In this project we go back in time to the 90's, 1992 to be exact. The year where Microsoft releases Windows 3.1 and Euro Disney opens it doors. Well we are not here for that, let's get to the point. Maybe even more important in that year is the birth of the first person shooter genre. Yes I am talking about Wolvenstein 3D. The game that surprised gamers over the whole world and looked amazing in 92. Well let's make that but a bit simpler. We pair up with a fellow student to recreate this legendary game. Well atleast the raycasting engine. The mandatory just makes it so you create a basic game where you can look and move around. But with some of the bonuses you can make this project level up. It really lets you create anything you want as long that it still uses the raycaster under the hood. This project I am really proud of and I would like to do it another time but then with C++ and OpenGL for better performance.
+
+[Link to my Cub3D](https://github.com/Quinten-14/42_Projects/tree/master/42_Cub3d)
+
+[Link to my teammate](https://github.com/Ella-42)
+
+**CPP Modules 00-04**
+
+Well C is nice but what about Object oriented programming? Let me introduce you to C++, let's just call it C on steroids shall we. First I was really scared of C++ but while learning it I really started to love it. Classes and inheritance are some of my favorite concepts I have learned yet. These modules are just step by step little projects that teach us more about how OOP concepts work and how we should use them. 
+
+[Link to my CPP modules](https://github.com/Quinten-14/42_Projects/tree/master/42_Cpp)
