@@ -123,3 +123,7 @@ Being the helping hand to a lot of new students and just the GOAT under the 42 Y
 Anthony - [Github page](https://github.com/ahooghe)
 
 Finding even the smallest bugs and all that while not even using a debugger
+
+Victor - [Github page](https://github.com/ace-rake)
+
+Being the GDB mentor and super nice guy
