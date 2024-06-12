@@ -1,5 +1,5 @@
 NAME = bureaucrat
-SRC = main.cpp class_definitions/Bureaucrat.cpp
+SRC = main.cpp class_definitions/Bureaucrat.cpp class_definitions/Form.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = g++
 RM = rm -rf

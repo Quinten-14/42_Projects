@@ -10,5 +10,6 @@
 
 // Custom Classes
 #include "./class/Bureaucrat.hpp"
+#include "./class/Form.hpp"
 
 #endif

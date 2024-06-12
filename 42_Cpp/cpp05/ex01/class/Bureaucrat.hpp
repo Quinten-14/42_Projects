@@ -1,6 +1,8 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
+#include "./Form.hpp"
+
 class   Bureaucrat
 {
     public:
@@ -25,6 +27,9 @@ class   Bureaucrat
 
         // Decrement Grade by one (default)
         void decrementGrade(int change = 1);
+
+        // Sign Form
+        void signForm(Form& form) const;
 
         class GradeTooLowException: public std::exception {
             virtual const char* what() const throw();
