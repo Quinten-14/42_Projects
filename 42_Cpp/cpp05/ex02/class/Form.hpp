@@ -49,6 +49,8 @@ class   Form
             virtual const char* what() const throw();
         };
 
+        virtual ~Form();
+
 
     private:
         const std::string m_name;

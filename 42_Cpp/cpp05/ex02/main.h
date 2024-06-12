@@ -13,5 +13,6 @@
 #include "./class/Bureaucrat.hpp"
 #include "./class/Form.hpp"
 #include "./class/ShrubberyCreationForm.hpp"
+#include "./class/RobotomyRequestForm.hpp"
 
 #endif

@@ -66,17 +66,17 @@ void Form::execute(const Bureaucrat& executor) const
 
 const char* Form::GradeTooLowException::what() const throw()
 {
-    return "Form: grade too low!";
+    return "Form: grade too low!\n";
 }
 
 const char* Form::GradeTooHighException::what() const throw()
 {
-    return "Form: grade too high!";
+    return "Form: grade too high!\n";
 }
 
 const char* Form::NotSignedException::what() const throw()
 {
-    return "Form: form is not yet signed!";
+    return "Form: form is not yet signed!\n";
 }
 
 std::ostream& operator << (std::ostream &output, const Form& form)
@@ -84,3 +84,5 @@ std::ostream& operator << (std::ostream &output, const Form& form)
     output << "Form " << form.getName() << " Signed: " << form.isSignedGetter() << " Grade Required To Sign: " << form.gradeRequiredSignGetter() << " Grade Required To Execute: " << form.gradeRequiredExecGetter() << std::endl;
     return output;
 }
+
+Form::~Form() {}
