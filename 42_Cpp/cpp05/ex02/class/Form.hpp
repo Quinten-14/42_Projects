@@ -28,6 +28,9 @@ class   Form
         // Grade Required To Execute Getter
         int gradeRequiredExecGetter() const;
 
+        // Target Getter
+        const std::string& getTarget() const;
+
         // Sign Form Function
         void beSigned(const Bureaucrat& Bureaucrat);
 

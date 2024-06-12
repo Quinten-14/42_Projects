@@ -43,6 +43,11 @@ int Form::gradeRequiredExecGetter() const
     return this->m_requiredToExec;
 }
 
+const std::string& Form::getTarget() const
+{
+    return this->m_target;
+}
+
 void Form::beSigned(const Bureaucrat& Bureaucrat)
 {
     if (m_requiredToSign < Bureaucrat.getGrade())

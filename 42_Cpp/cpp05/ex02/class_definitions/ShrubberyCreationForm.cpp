@@ -19,7 +19,7 @@ void ShrubberyCreationForm::executeConcrete() const
 {
     std::fstream fs;
 
-    fs.open(this->m_target + "_shrubbery", std::fstream::out | std::fstream::trunc);
+    fs.open(this->getTarget() + "_shrubbery", std::fstream::out | std::fstream::trunc);
 
     if (!fs.good())
         std::cerr << "Error while opening target file" << std::endl;

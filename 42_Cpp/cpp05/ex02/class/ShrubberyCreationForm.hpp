@@ -19,8 +19,6 @@ class   ShrubberyCreationForm : public Form
         ~ShrubberyCreationForm();
 
     private:
-        const std::string m_target;
-
         // Private because doesn't require one param like subject says
         ShrubberyCreationForm();
 
