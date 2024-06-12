@@ -17,16 +17,25 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void ShrubberyCreationForm::executeConcrete() const
 {
-    std::fstream fs;
+    std::fstream filestream;
 
-    fs.open(this->getTarget() + "_shrubbery", std::fstream::out | std::fstream::trunc);
+    filestream.open(this->getTarget() + "_shrubbery", std::fstream::out | std::fstream::trunc);
 
-    if (!fs.good())
+    if (!filestream.good())
         std::cerr << "Error while opening target file" << std::endl;
 
-    fs << "Test";
+    filestream <<
+    "       _-_\n"
+    "    /~~   ~~\\\n"
+    " /~~         ~~\\\n"
+    "{               }\n"
+    " \\  _-     -_  /\n"
+    "   ~  \\\\ //  ~\n"
+    "_- -   | | _- _\n"
+    "  _ -  | |   -_\n"
+    "      // \\\\\n";
 
-    fs.close();
+    filestream.close();
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
