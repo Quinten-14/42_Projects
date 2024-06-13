@@ -23,6 +23,12 @@ class Intern
         };
 
     private:
+        std::string m_names[3];
+        Form*   (*m_forms[3])(const std::string& target);
+
+        static Form* makeShrubberyCreationForm(const std::string& target);
+        static Form* makeRobotomyRequestForm(const std::string& target);
+        static Form* makePresidentialPardonForm(const std::string& target);
 };
 
 #endif
