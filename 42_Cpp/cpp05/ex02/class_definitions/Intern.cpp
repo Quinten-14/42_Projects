@@ -22,10 +22,12 @@ Form* Intern::makeForm(const std::string& formName, const std::string& target) c
     else if (formName == "presidential pardon")
         return (std::cout << "Intern creates " << formName << std::endl, new PresidentialPardonForm(target));
     else
-    {
-        std::cerr << "Intern: form name " << formName << " is not recognized." << std::endl;
-        return nullptr;
-    }
+        throw FormNotFoundException();
+}
+
+const char* Intern::FormNotFoundException::what() const throw()
+{
+    return "<intern> Form not found!";
 }
 
 Intern::~Intern() {}

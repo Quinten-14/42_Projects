@@ -9,23 +9,29 @@ int main() {
     Intern intern;
     Bureaucrat jeffrey("Jeffrey", 1);
 
-    Form* form1 = intern.makeForm("shrubbery creation", "home");
-    jeffrey.signForm(*form1);
-    jeffrey.executeForm(*form1);
-    if (form1)
-        delete form1;
+    try
+    {
+        Form* form1 = intern.makeForm("shrubbery creation", "home");
+        jeffrey.signForm(*form1);
+        jeffrey.executeForm(*form1);
+        if (form1)
+            delete form1;
 
-    Form* form2 = intern.makeForm("robotomy request", "Frank");
-    if (form2)
-        delete form2;
+        Form* form2 = intern.makeForm("robotomy request", "Frank");
+        if (form2)
+            delete form2;
 
-    Form* form3 = intern.makeForm("presidential pardon", "Sorry");
-    if (form3)
-        delete form3;
+        Form* form3 = intern.makeForm("presidential pardon", "Sorry");
+        if (form3)
+            delete form3;
 
-    Form* form4 = intern.makeForm("unknown form", "Target");
-    if (form4)
-        delete form4;
-
+        Form* form4 = intern.makeForm("unknown form", "Target");
+        if (form4)
+            delete form4;
+    }
+    catch (std::exception& e)
+    {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
     return 0;
 }
