@@ -1,4 +1,5 @@
 #include "../main.h"
+#include <cctype>
 #include <limits>
 
 ScalarConverter::ScalarConverter() {}
@@ -78,12 +79,62 @@ e_type ScalarConverter::typeIdentifier(const std::string& input)
     return INVALID;
 }
 
+void    ConvertFromPseudo(const std::string& input)
+{
+    if (input == "-inf" || input == "-inff")
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: -inff" << std::endl;
+        std::cout << "double: -inf" << std::endl;
+    }
+    else if (input == "+inf" || input == "+inff")
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: +inff" << std::endl;
+        std::cout << "double: +inf" << std::endl;
+    }
+    else if (input == "nan" || input == "nanf")
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: nanf" << std::endl;
+        std::cout << "double: nan" << std::endl;
+    }
+}
+
+void    ConvertFromChar(const std::string& input)
+{
+    char    character;
+
+    if (input.length() == 1)
+        character = input[0];
+    else
+        character = input[1];
+
+    if (isprint(character))
+        std::cout << "char: " << character <<std::endl;
+    else
+        std::cout << "char: Non displayable" << std::endl;
+
+    std::cout << "int: " << static_cast<int>(character) << std::endl;
+    std::cout << "float: " << static_cast<float>(character) << ".0f" << std::endl;
+    std::cout << "double: " << static_cast<double>(character) << ".0" << std::endl;
+}
+
 void    ScalarConverter::convert(const std::string& input)
 {
     e_type  type;
 
     type = typeIdentifier(input);
-    std::cout << type << std::endl;
+
+    if (type == PSEUDO)
+        ConvertFromPseudo(input);
+    else if (type == CHAR)
+        ConvertFromChar(input);
+    else if (type == INVALID)
+        std::cout << "Invalid Input Type" << std::endl;
 }
 
 ScalarConverter::~ScalarConverter() {}
