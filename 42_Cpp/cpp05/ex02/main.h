@@ -15,5 +15,6 @@
 #include "./class/ShrubberyCreationForm.hpp"
 #include "./class/RobotomyRequestForm.hpp"
 #include "./class/PresidentialPardonForm.hpp"
+#include "./class/Intern.hpp"
 
 #endif
