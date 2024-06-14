@@ -1,7 +1,6 @@
 #include "../main.h"
 #include <cctype>
 #include <limits>
-#include <locale>
 
 ScalarConverter::ScalarConverter() {}
 
@@ -144,8 +143,6 @@ void    ConvertFromInt(const std::string& input)
             std::cout << "char: '" << static_cast<char>(value_integer) << "'" << std::endl;
 
     std::cout << "int: " << value_integer << std::endl;
-    std::cout << "float: " << static_cast<float>(value_integer) << ".0f" << std::endl;
-    std::cout << "double: " << static_cast<double>(value_integer) << ".0" << std::endl;
 }
 
 void    ScalarConverter::convert(const std::string& input)
