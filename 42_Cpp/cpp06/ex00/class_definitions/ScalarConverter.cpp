@@ -104,6 +104,16 @@ void    ConvertFromPseudo(const std::string& input)
     }
 }
 
+template<typename T>
+bool    isPrintable(T value)
+{
+    if (!isprint(value))
+        std::cout << "char: Non displayable" << std::endl;
+    else
+        return (false);
+    return (true);
+}
+
 void    ConvertFromChar(const std::string& input)
 {
     char    character;
@@ -113,14 +123,24 @@ void    ConvertFromChar(const std::string& input)
     else
         character = input[1];
 
-    if (isprint(character))
-        std::cout << "char: " << character <<std::endl;
-    else
-        std::cout << "char: Non displayable" << std::endl;
+
+    if (!isPrintable(character))
+        std::cout << "char: " << character << std::endl;
 
     std::cout << "int: " << static_cast<int>(character) << std::endl;
     std::cout << "float: " << static_cast<float>(character) << ".0f" << std::endl;
     std::cout << "double: " << static_cast<double>(character) << ".0" << std::endl;
+}
+
+void    ConvertFromInt(const std::string& input)
+{
+    int value_integer = std::atoi(input.c_str());
+
+    if (value_integer < 0 || value_integer > 127)
+        std::cout << "char: impossible" << std::endl;
+    else
+        if (!isPrintable(value_integer))
+            std::cout << "char: '" << static_cast<char>(value_integer) << "'" << std::endl;
 }
 
 void    ScalarConverter::convert(const std::string& input)
@@ -133,6 +153,8 @@ void    ScalarConverter::convert(const std::string& input)
         ConvertFromPseudo(input);
     else if (type == CHAR)
         ConvertFromChar(input);
+    else if (type == INT)
+        ConvertFromInt(input);
     else if (type == INVALID)
         std::cout << "Invalid Input Type" << std::endl;
 }
