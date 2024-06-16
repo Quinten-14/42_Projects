@@ -148,7 +148,12 @@ void    ConvertFromInt(const std::string& input)
     std::cout << "double: " << static_cast<double>(value_integer) << ".0" << std::endl;
 }
 
-void    ConvertFromFloat(const std::string& input)
+bool    hasFractional(double value)
+{
+    return std::floor(value) != value;
+}
+
+void    ConvertFromFloatOrDouble(const std::string& input)
 {
     float value_float = std::atof(input.c_str());
 
@@ -162,8 +167,17 @@ void    ConvertFromFloat(const std::string& input)
         std::cout << "int: impossible" << std::endl;
     else
         std::cout << "int: " << static_cast<int>(value_float) << std::endl;
-    std::cout << "float: " << value_float << "f" << std::endl;
-    std::cout << "double: " << static_cast<double>(value_float) << std::endl;
+
+    if (hasFractional(value_float))
+    {
+        std::cout << "float: " << value_float << "f" << std::endl;
+        std::cout << "double: " << static_cast<double>(value_float) << std::endl;
+    }
+    else
+    {
+        std::cout << "float: " << value_float << ".0f" << std::endl;
+        std::cout << "double: " << static_cast<double>(value_float) << ".0" << std::endl;
+    }
 }
 
 void    ScalarConverter::convert(const std::string& input)
@@ -178,8 +192,8 @@ void    ScalarConverter::convert(const std::string& input)
         ConvertFromChar(input);
     else if (type == INT)
         ConvertFromInt(input);
-    else if (type == FLOAT)
-        ConvertFromFloat(input);
+    else if (type == FLOAT || type == DOUBLE)
+        ConvertFromFloatOrDouble(input);
     else if (type == INVALID)
         std::cout << "Invalid Input Type" << std::endl;
 }
