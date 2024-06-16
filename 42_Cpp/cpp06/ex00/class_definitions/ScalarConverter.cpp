@@ -148,6 +148,24 @@ void    ConvertFromInt(const std::string& input)
     std::cout << "double: " << static_cast<double>(value_integer) << ".0" << std::endl;
 }
 
+void    ConvertFromFloat(const std::string& input)
+{
+    float value_float = std::atof(input.c_str());
+
+    if (value_float < 0 || value_float > 127)
+        std::cout << "char: impossible" << std::endl;
+    else
+        if (!isPrintable(value_float))
+            std::cout << "char: '" << static_cast<char>(value_float) << "'" << std::endl;
+
+    if (value_float < std::numeric_limits<int>::min() || value_float > std::numeric_limits<int>::max())
+        std::cout << "int: impossible" << std::endl;
+    else
+        std::cout << "int: " << static_cast<int>(value_float) << std::endl;
+    std::cout << "float: " << value_float << "f" << std::endl;
+    std::cout << "double: " << static_cast<double>(value_float) << std::endl;
+}
+
 void    ScalarConverter::convert(const std::string& input)
 {
     e_type  type;
@@ -160,6 +178,8 @@ void    ScalarConverter::convert(const std::string& input)
         ConvertFromChar(input);
     else if (type == INT)
         ConvertFromInt(input);
+    else if (type == FLOAT)
+        ConvertFromFloat(input);
     else if (type == INVALID)
         std::cout << "Invalid Input Type" << std::endl;
 }
