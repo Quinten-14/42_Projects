@@ -5,7 +5,6 @@
 #include <iostream>
 #include <stdexcept>
 #include <fstream>
-#include <exception>
 
 #define MIN_GRADE 150
 #define MAX_GRADE 1
@@ -16,5 +15,6 @@
 #include "./class/ShrubberyCreationForm.hpp"
 #include "./class/RobotomyRequestForm.hpp"
 #include "./class/PresidentialPardonForm.hpp"
+#include "./class/Intern.hpp"
 
 #endif
