@@ -28,6 +28,9 @@ int main()
         std::cerr << e.what() << std::endl;
     }
 
+    std::cout << "\nDefault constructor test" << std::endl;
+    Array<int>  arr3;
+
 
     std::cout << "\nException testing" << std::endl;
     try
