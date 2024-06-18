@@ -1,11 +1,13 @@
 #include "./main.h"
+#include "class/RobotomyRequestForm.hpp"
+#include "class/ShrubberyCreationForm.hpp"
 
 int main() {
-    Bureaucrat jeffrey("Jeffrey", 1);
+    Bureaucrat jeffrey("Jeffrey", 150);
 
     try
     {
-        PresidentialPardonForm   main_form("home");
+        ShrubberyCreationForm   main_form("home");
         jeffrey.signForm(main_form);
         jeffrey.executeForm(main_form);
     }
