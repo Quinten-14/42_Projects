@@ -1,8 +1,8 @@
 #include "../main.h"
 
-ShrubberyCreationForm::ShrubberyCreationForm(): Form() {}
+ShrubberyCreationForm::ShrubberyCreationForm(): AForm() {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target): Form("ShrubberyCreationForm", target, 145, 137) {}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target): AForm("ShrubberyCreationForm", target, 145, 137) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 {

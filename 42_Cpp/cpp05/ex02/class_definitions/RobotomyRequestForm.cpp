@@ -1,8 +1,8 @@
 #include "../main.h"
 
-RobotomyRequestForm::RobotomyRequestForm(): Form() {}
+RobotomyRequestForm::RobotomyRequestForm(): AForm() {}
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string& target): Form("RobotomyRequestForm", target, 72, 45) {}
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target): AForm("RobotomyRequestForm", target, 72, 45) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
 {

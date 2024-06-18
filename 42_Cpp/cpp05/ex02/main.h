@@ -12,7 +12,7 @@
 
 // Custom Classes
 #include "./class/Bureaucrat.hpp"
-#include "./class/Form.hpp"
+#include "./class/AForm.hpp"
 #include "./class/ShrubberyCreationForm.hpp"
 #include "./class/RobotomyRequestForm.hpp"
 #include "./class/PresidentialPardonForm.hpp"

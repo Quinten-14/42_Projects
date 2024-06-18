@@ -1,20 +1,20 @@
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 class   Bureaucrat;
 
-class   Form
+class   AForm
 {
     public:
         // Constructor
-        Form();
-        Form(const std::string& name, const std::string& target, int gradeRequiredSign, int gradeRequiredExec);
+        AForm();
+        AForm(const std::string& name, const std::string& target, int gradeRequiredSign, int gradeRequiredExec);
 
         // Copy Constructor
-        Form(const Form& other);
+        AForm(const AForm& other);
 
         // Copy Assignment Operator
-        Form& operator = (const Form& other);
+        AForm& operator = (const AForm& other);
 
         // Name Getter
         const std::string& getName() const;
@@ -31,10 +31,10 @@ class   Form
         // Target Getter
         const std::string& getTarget() const;
 
-        // Sign Form Function
+        // Sign AForm Function
         void beSigned(const Bureaucrat& Bureaucrat);
 
-        // Execute Form
+        // Execute AForm
         void execute(const Bureaucrat& executor) const;
 
         class GradeTooLowException: public std::exception {
@@ -49,7 +49,7 @@ class   Form
             virtual const char* what() const throw();
         };
 
-        virtual ~Form();
+        virtual ~AForm();
 
 
     private:
@@ -63,6 +63,6 @@ class   Form
         virtual void executeConcrete() const = 0;
 };
 
-std::ostream& operator<<(std::ostream &output, const Form& form);
+std::ostream& operator<<(std::ostream &output, const AForm& form);
 
 #endif
