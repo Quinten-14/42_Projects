@@ -10,6 +10,10 @@ class   Span
     public:
         Span(unsigned int n);
 
+        Span(const Span& other);
+
+        Span&   operator = (const Span& other);
+
         void    addNumber(int number);
 
         int     shortestSpan();
@@ -31,6 +35,8 @@ class   Span
         class   NoSpanPossibleException : public std::exception {
             virtual const char* what() const throw();
         };
+
+        ~Span();
 
     private:
         unsigned int    m_length;

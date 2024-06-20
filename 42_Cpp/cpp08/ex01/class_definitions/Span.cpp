@@ -10,6 +10,23 @@ const char* Span::LimitReachedException::what() const throw()
     return "Vector has reached the limit";
 }
 
+Span::Span(const Span& other)
+{
+    m_length = other.m_length;
+    m_numbers.clear();
+    m_numbers = other.m_numbers;
+}
+
+Span&   Span::operator=(const Span& other)
+{
+    if (this != &other)
+    {
+        m_length = other.m_length;
+        m_numbers = other.m_numbers;
+    }
+    return (*this);
+}
+
 void    Span::addNumber(int number)
 {
     if (m_numbers.size() < m_length)
@@ -52,3 +69,5 @@ int     Span::longestSpan(void)
 
     return max - min;
 }
+
+Span::~Span() {}
