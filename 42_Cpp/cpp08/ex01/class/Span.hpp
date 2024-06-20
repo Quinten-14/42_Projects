@@ -2,6 +2,7 @@
 # define SPAN_HPP
 
 #include <exception>
+#include <iterator>
 #include <vector>
 
 class   Span
@@ -12,6 +13,14 @@ class   Span
         void    addNumber(int number);
 
         int     shortestSpan();
+
+        template <typename Iterator>
+        void    addNumbers(Iterator begin, Iterator end)
+        {
+            if (std::distance(begin, end) + m_numbers.size() > m_length)
+                throw LimitReachedException();
+            m_numbers.insert(m_numbers.end(), begin, end);
+        }
 
         int     longestSpan();
 
