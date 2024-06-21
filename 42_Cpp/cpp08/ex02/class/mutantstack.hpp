@@ -11,6 +11,7 @@ class   MutantStack : public std::stack<T>
 {
     public:
         typedef typename std::stack<T>::container_type::iterator    iterator;
+        typedef typename std::stack<T>::container_type::reverse_iterator    reverse_iterator;
 
         MutantStack() : std::stack<T>() {}
  
@@ -30,7 +31,15 @@ class   MutantStack : public std::stack<T>
         iterator end(void) {
             return (std::stack<T>::c.end());
         }
-        
+
+        reverse_iterator rbegin(void) {
+            return (std::stack<T>::c.rbegin());
+        }
+
+        reverse_iterator rend(void) {
+            return (std::stack<T>::c.rend());
+        }
+
         virtual ~MutantStack() {}
 
     private:
