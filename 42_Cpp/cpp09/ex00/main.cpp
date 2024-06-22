@@ -1,15 +1,16 @@
+#include <cstdlib>
 #include <iostream>
 #include "./class/BitcoinExchange.hpp"
 
-int main(void)
+int main(int ac, char **av)
 {
+    if (ac != 2)
+    {
+        std::cerr << "Wrong parameter input. Must be ./btc 'InputFile'\n";
+        return (EXIT_SUCCESS);
+    }
+
     BitcoinExchange bitcoinExchange;
 
-    std::string testDate = "2011-01-03";
-
-    float   price = bitcoinExchange.getPrice(testDate);
-
-    std::cout << price << std::endl;
-
-    std::cout << bitcoinExchange.calculateTotalPrice(price, 3) << std::endl;
+    bitcoinExchange.calculateBtcWorthFromFile(av[1]);
 }

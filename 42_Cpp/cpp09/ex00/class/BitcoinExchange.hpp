@@ -7,6 +7,7 @@
 #include <ctime>
 #include <fstream>
 #include <map>
+#include <sstream>
 class   BitcoinExchange
 {
     public:
@@ -16,9 +17,7 @@ class   BitcoinExchange
 
         BitcoinExchange&    operator = (const BitcoinExchange& other);
         
-        float           getPrice(const std::string& dateStr) const;
-
-        float           calculateTotalPrice(const float price, const float amountBtc) const;
+        void            calculateBtcWorthFromFile(const std::string filePath);
 
         ~BitcoinExchange();
     private:
@@ -29,6 +28,11 @@ class   BitcoinExchange
         time_t          parseToDate(const std::string& dateStr) const;
         void            parseCsvLine(const std::string& line);
         void            populateMapWithCsvData(void);
+        float           getPriceSingleBtc(const std::string& dateStr) const;
+        float           calculateTotalPrice(const float price, const float amountBtc) const;
+        std::string          extractDateFromInput(const std::string& line) const;
+        float           extractValueFromInput(const std::string& line) const;
+        std::ifstream   openInputFile(const std::string filePath) const;
         std::map<time_t, float>::const_iterator findClosestDate(time_t date) const;
 };
 
