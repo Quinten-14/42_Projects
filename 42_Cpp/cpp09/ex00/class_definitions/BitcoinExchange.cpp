@@ -76,18 +76,25 @@ void    BitcoinExchange::populateMapWithCsvData(void)
     file.close();
 }
 
-float   BitcoinExchange::getPrice(const std::string& dateStr) const
+std::map<time_t, float>::const_iterator BitcoinExchange::findClosestDate(time_t date) const
 {
-    time_t  date = parseToDate(dateStr);
     std::map<time_t, float>::const_iterator it = historyChart.find(date);
-    if (it != historyChart.end())
-        return it->second;
+    int     dayInSeconds = 86400;
 
     while (it == historyChart.end() && date > 0)
     {
-        date -= 86400;
+        date -= dayInSeconds;
         it = historyChart.find(date);
     }
+
+    return it;
+}
+
+
+float   BitcoinExchange::getPrice(const std::string& dateStr) const
+{
+    time_t  date = parseToDate(dateStr);
+    std::map<time_t, float>::const_iterator it = findClosestDate(date);
 
     if (it != historyChart.end())
         return it->second;

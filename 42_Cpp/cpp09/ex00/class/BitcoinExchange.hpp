@@ -27,6 +27,7 @@ class   BitcoinExchange
         time_t          parseToDate(const std::string& dateStr) const;
         void            parseCsvLine(const std::string& line);
         void            populateMapWithCsvData(void);
+        std::map<time_t, float>::const_iterator findClosestDate(time_t date) const;
 };
 
 #endif
