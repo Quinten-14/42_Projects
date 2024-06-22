@@ -18,6 +18,8 @@ class   BitcoinExchange
         
         float           getPrice(const std::string& dateStr) const;
 
+        float           calculateTotalPrice(const float price, const float amountBtc) const;
+
         ~BitcoinExchange();
     private:
         std::map<time_t, float> historyChart;

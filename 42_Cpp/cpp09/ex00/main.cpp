@@ -10,4 +10,6 @@ int main(void)
     float   price = bitcoinExchange.getPrice(testDate);
 
     std::cout << price << std::endl;
+
+    std::cout << bitcoinExchange.calculateTotalPrice(price, 3) << std::endl;
 }

@@ -102,6 +102,13 @@ float   BitcoinExchange::getPrice(const std::string& dateStr) const
     return -1;
 }
 
+float   BitcoinExchange::calculateTotalPrice(const float price, const float amountBtc) const
+{
+    if (price == -1)
+        return (std::cerr << "Price not available for the given date.\n", -1);
+    return amountBtc * price;
+}
+
 BitcoinExchange::~BitcoinExchange()
 {
 
