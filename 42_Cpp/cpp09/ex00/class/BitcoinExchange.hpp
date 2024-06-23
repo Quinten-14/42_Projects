@@ -19,6 +19,14 @@ class   BitcoinExchange
         
         void            calculateBtcWorthFromFile(const std::string filePath);
 
+        class   DateInvalid: public std::exception {
+            virtual const char* what() const throw();
+        };
+        
+        class   ValueInvalid: public std::exception {
+            virtual const char* what() const throw();
+        };
+
         ~BitcoinExchange();
     private:
         std::map<time_t, float> historyChart;

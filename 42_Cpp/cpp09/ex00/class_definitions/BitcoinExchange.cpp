@@ -103,7 +103,7 @@ float   BitcoinExchange::getPriceSingleBtc(const std::string& dateStr) const
 {
     time_t  date = parseToDate(dateStr);
     if (date == -1)
-        throw std::runtime_error("Invalid date: " + dateStr);
+        throw DateInvalid();
     std::map<time_t, float>::const_iterator it = findClosestDate(date);
 
     if (it != historyChart.end())
@@ -156,7 +156,7 @@ float   BitcoinExchange::extractValueFromInput(const std::string& line) const
 
     float  value = std::atof(valueStr.c_str());
     if (value <= 0 || value >= 1000)
-        throw std::runtime_error("Invalid value: " + valueStr);
+        throw ValueInvalid();
     return value;
 }
 
@@ -179,10 +179,20 @@ void    BitcoinExchange::calculateBtcWorthFromFile(const std::string filePath)
         }
         catch (std::exception& e)
         {
-            std::cerr << e.what() << std::endl;
+            std::cerr << "Error: " << e.what() << std::endl;
         }
     }
     file.close();
+}
+
+const char* BitcoinExchange::DateInvalid::what() const throw()
+{
+    return "Date is invalid";
+}
+
+const char* BitcoinExchange::ValueInvalid::what() const throw()
+{
+    return "Value is invalid";
 }
 
 BitcoinExchange::~BitcoinExchange()
