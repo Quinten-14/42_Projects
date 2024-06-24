@@ -1,4 +1,4 @@
-NAME = btc
+NAME = RPN
 SRC = main.cpp class_definitions/RPN.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = g++

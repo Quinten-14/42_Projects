@@ -14,9 +14,11 @@ class   RPN
 
         RPN&    operator = (const RPN& other);
 
+        double  caculateResultRPN(const std::string inputStr);
+
         ~RPN();
     private:
-        std::stack<double>  value_stack;
+        std::stack<double>  m_valueStack;
 };
 
 #endif
