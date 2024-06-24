@@ -26,6 +26,25 @@ RPN&    RPN::operator = (const RPN& other)
     return (*this);
 }
 
+const char* RPN::ErrorException::what() const throw()
+{
+    return "Error";
+}
+
+void    RPN::doCalculationOperator(const std::string token, double operand1, double operand2)
+{
+    if (token == "+")
+        m_valueStack.push(operand1 + operand2);
+    else if (token == "-")
+        m_valueStack.push(operand1 - operand2);
+    else if (token == "*")
+        m_valueStack.push(operand1 * operand2);
+    else if (token == "/")
+        m_valueStack.push(operand1 / operand2);
+    else
+        throw ErrorException();
+}
+
 double  RPN::caculateResultRPN(const std::string inputStr)
 {
     std::istringstream  tokens(inputStr);
@@ -35,32 +54,21 @@ double  RPN::caculateResultRPN(const std::string inputStr)
     {
         if (isdigit(token[0]))
             m_valueStack.push(std::stod(token));
-        else if (token == "(" || token == ")")
-            throw std::runtime_error("Invalid RPN: parentheses found");
         else
         {
             if (m_valueStack.size() < 2)
-                throw std::runtime_error("Invalid RPN: not enough operands");
+                throw ErrorException();
             double  operand2 = m_valueStack.top();
             m_valueStack.pop();
             double  operand1 = m_valueStack.top();
             m_valueStack.pop();
 
-            if (token == "+")
-                m_valueStack.push(operand1 + operand2);
-            else if (token == "-")
-                m_valueStack.push(operand1 - operand2);
-            else if (token == "*")
-                m_valueStack.push(operand1 * operand2);
-            else if (token == "/")
-                m_valueStack.push(operand1 / operand2);
-            else
-                throw std::runtime_error("Unknown operator: " + token);
+            doCalculationOperator(token, operand1, operand2);
         }
     }
 
     if (m_valueStack.size() != 1)
-        throw std::runtime_error("Invalid RPN found");
+        throw ErrorException();
 
     return m_valueStack.top();
 }
