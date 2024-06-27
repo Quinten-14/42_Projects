@@ -26,14 +26,12 @@ PmergeMe&    PmergeMe::operator = (const PmergeMe& other)
     return (*this);
 }
 
-void    PmergeMe::insertionSortVector(std::vector<int>& array)
+void    PmergeMe::insertionSortVector(std::vector<int>& arr)
 {
-    for (std::vector<int>::iterator it1 = array.begin() + 1; it1 != array.end(); it1++)
-    {
+    for (std::vector<int>::iterator it1 = arr.begin() + 1; it1 != arr.end(); ++it1) {
         int temp = *it1;
-        std::vector<int>::iterator  it2 = it1;
-        while (it2 != array.begin() && *(it2 - 1) > temp)
-        {
+        std::vector<int>::iterator it2 = it1;
+        while (it2 != arr.begin() && *(it2 - 1) > temp) {
             *it2 = *(it2 - 1);
             --it2;
         }
@@ -41,56 +39,85 @@ void    PmergeMe::insertionSortVector(std::vector<int>& array)
     }
 }
 
-
-std::list<int>  PmergeMe::mergeInsertion(const std::list<int>& arrOne, const std::list<int>& arrTwo)
+void    PmergeMe::insertionSortList(std::list<int>& lst)
 {
-    std::list<int>  result;
-    std::list<int>::const_iterator    itOne = arrOne.begin();
-    std::list<int>::const_iterator    itTwo = arrTwo.begin();
+    if (lst.size() <= 1) {
+        return;
+    }
 
-    while (itOne != arrOne.end() && itTwo != arrTwo.end())
-    {
-        if (*itOne <= *itTwo)
-        {
-            result.push_back(*itOne);
-            ++itOne;
-        }
-        else
-        {
-            result.push_back(*itTwo);
-            ++itTwo;
+    std::list<int> temp;
+    temp.splice(temp.end(), lst, lst.begin());
+
+    for (std::list<int>::const_iterator it1 = lst.begin(), end = lst.end(); it1 != end; ++it1) {
+        for (std::list<int>::iterator it2 = temp.begin();; ++it2) {
+            if (it2 == temp.end() || *it1 < *it2) {
+                temp.insert(it2, *it1);
+                break;
+            }
         }
     }
 
-    result.insert(result.end(), itOne, arrOne.end());
-    result.insert(result.end(), itTwo, arrTwo.end());
+    lst.swap(temp);
+}
+
+std::list<int>  PmergeMe::mergeInsertion(const std::list<int>& left, const std::list<int>& right)
+{
+    std::list<int> result;
+    std::list<int>::const_iterator it_left = left.begin();
+    std::list<int>::const_iterator it_right = right.begin();
+
+    while (it_left != left.end() && it_right != right.end()) {
+        if (*it_left <= *it_right) {
+            result.push_back(*it_left);
+            ++it_left;
+        } else {
+            result.push_back(*it_right);
+            ++it_right;
+        }
+    }
+
+    result.insert(result.end(), it_left, left.end());
+    result.insert(result.end(), it_right, right.end());
 
     return result;
 }
 
-std::list<int>  PmergeMe::fordJohnsonSortVector(std::vector<int>& array)
+std::list<int> PmergeMe::fordJohnsonSortVector(std::vector<int>& arr)
 {
-    if (array.size() <= 1)
-        return std::list<int>(array.begin(), array.end());
+    if (arr.size() <= 1) {
+        return std::list<int>(arr.begin(), arr.end());
+    }
 
-    size_t  centerOfArray = array.size() / 2;
-    std::vector<int>splitOne(array.begin(), array.begin() + centerOfArray);
-    std::vector<int>splitTwo(array.begin() + centerOfArray, array.end());
+    size_t mid = arr.size() / 2;
+    std::vector<int> left_part(arr.begin(), arr.begin() + mid);
+    std::vector<int> right_part(arr.begin() + mid, arr.end());
 
-    insertionSortVector(splitOne);
-    insertionSortVector(splitTwo);
+    insertionSortVector(left_part);
+    insertionSortVector(right_part);
 
-    std::list<int>sortedOne(splitOne.begin(), splitOne.end());
-    std::list<int>sortedTwo(splitTwo.begin(), splitTwo.end());
+    std::list<int>sorted_left(left_part.begin(), left_part.end());
+    std::list<int>sorted_right(right_part.begin(), right_part.end());
 
-    return mergeInsertion(sortedOne, sortedTwo);
+    return mergeInsertion(sorted_left, sorted_right);
 }
-        
-void    PmergeMe::printList(const std::list<int>& list)
+
+std::list<int> PmergeMe::fordJohnsonSortList(std::list<int>& lst)
 {
-    for (std::list<int>::const_iterator it = list.begin(); it != list.end(); ++it)
-        std::cout << *it << " ";
-    std::cout << std::endl;
+    if (lst.size() <= 1) {
+        return lst;
+    }
+
+    size_t mid = std::distance(lst.begin(), lst.end()) / 2;
+    std::list<int> left_part(lst.begin(), std::next(lst.begin(), mid));
+    std::list<int> right_part(std::next(lst.begin(), mid), lst.end());
+
+    insertionSortList(left_part);
+    insertionSortList(right_part);
+
+    std::list<int> sorted_left(left_part.begin(), left_part.end());
+    std::list<int> sorted_right(right_part.begin(), right_part.end());
+
+    return mergeInsertion(sorted_left, sorted_right);
 }
 
 PmergeMe::~PmergeMe()
