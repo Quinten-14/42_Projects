@@ -96,7 +96,27 @@ Well C is nice but what about Object oriented programming? Let me introduce you 
 
 [Link to my CPP modules](https://github.com/Quinten-14/42_Projects/tree/master/42_Cpp)
 
+**CPP Modules 05-09**
+
+C++ is great and that is why we learn it a bit more. I remember the old days when adding a linked list added a bunch of boiler code. Well not anymore because module 8 and 9 learn us to work with containers. Since I know these my enjoyment for coding grew even more and now I can't stop using them. Also the algorithms are super nice to use. Honestly those are the only modules I really enjoyed. Okay 05 where you learn exceptions is also really nice but just boring and 07 where you see templates is a really handy one. There was actually just one that I hated and that was 06. Casting is handy but the subject was just really boring and not my style. Still it is handy to know. Now I feel a lot more confident in CPP and I can also see it as one of my main languages now that I will definetly use for some stuff in the future. 
+
+[Link to my CPP modules](https://github.com/Quinten-14/42_Projects/tree/master/42_Cpp)
+
+**IRC**
+
+In our campus the webserv project is the main project people do. For a matter of fact nobody did IRC here. But that changed because we wanted to tackle this hurdle and become the first group to do it on our campus. IRC is a project where you make an irc server that has the ability to be connected to through nc or an irc client. Our client we used was irssi and first we forgot the whole nc part so the progress was fast and we were really enjoying it. Then we found out the nc part and we needed to build in a lot more handlers but not mayor changes. So we still had a fun time on the project and really enjoyed it. The group I was with was also amazing and I felt like we could really work on each others ideas and connect in that way.
+
+[Link to my IRC](https://github.com/ace-rake/ft_irc/tree/8c007cb57a7f15b0a48b23292c9185ca2dea0224)
+
+[Link to my teammate](https://github.com/ace-rake)
+
+[Link to my teammate](https://github.com/Ella-42)
+
+
+
 These are all the projects I did for now but keep an eye on this repo to checkout more about the other projects once I finished them.
+
+
 
 ## Some more people I want to mention
 
