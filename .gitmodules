@@ -1,3 +1,6 @@
 [submodule "42_irc"]
 	path = 42_irc
 	url = git@github.com:ace-rake/ft_irc.git
+[submodule "ft_irc"]
+	path = ft_irc
+	url = git@github.com:ace-rake/ft_irc.git
