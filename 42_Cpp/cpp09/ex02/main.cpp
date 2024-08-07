@@ -6,24 +6,35 @@
 #include <ctime>
 #include <vector>
 
-std::list<int> generateRandomList(int size) {
-    std::list<int> random_list;
-    
-    srand(static_cast<unsigned int>(time(0)));
-    
-    for (int i = 0; i < size; ++i) {
-        random_list.push_back(rand() % 100000);
+std::list<int> takeInput(char **av)
+{
+    std::list<int> inputList;
+    for (int i = 1; av[i] != NULL; ++i)
+    {
+        char *end;
+        long value = strtol(av[i], &end, 10);
+
+        if (value > 2147483647 || value < -2147483648)
+        {
+            std::cerr << "Invalid input: " << av[i] << " is not a valid integer." << std::endl;
+            continue;
+        }
+        inputList.push_back(static_cast<int>(value));
     }
-    
-    return random_list;
+    return inputList;
 }
 
-int     main(void)
+
+int     main(int ac, char **av)
 {
-    int size = 5000;
+    if (ac < 2)
+    {
+        std::cout << "Wrong amount of arguments" << std::endl;
+        return 0;
+    }
 
     PmergeMe    pmerge;
-    std::list<int> list_container = generateRandomList(size);
+    std::list<int> list_container = takeInput(av);
     std::vector<int> vector_container(list_container.begin(), list_container.end());
 
     std::clock_t    startTimeList = std::clock();

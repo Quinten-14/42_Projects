@@ -25,15 +25,13 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
 BitcoinExchange&    BitcoinExchange::operator = (const BitcoinExchange& other)
 {
     if (this != &other)
-    {
         this->historyChart = other.historyChart;
-    }
     return (*this);
 }
 
-std::ifstream   BitcoinExchange::openCsvFile(void) const
+std::ifstream& BitcoinExchange::openCsvFile(std::ifstream& file) const
 {
-    std::ifstream   file("data/data.csv");
+    file.open("data/data.csv");
     
     if (!file.is_open())
     {
@@ -44,37 +42,33 @@ std::ifstream   BitcoinExchange::openCsvFile(void) const
     return file;
 }
 
-time_t  BitcoinExchange::parseToDate(const std::string& dateStr) const
+time_t BitcoinExchange::parseToDate(const std::string& dateStr) const
 {
     std::tm tm = {};
-    std::istringstream  ss(dateStr);
-
-    ss >> std::get_time(&tm, "%Y-%m-%d");
-
-    if (ss.fail())
+    if (strptime(dateStr.c_str(), "%Y-%m-%d", &tm) == NULL)
         return -1;
-    
     return std::mktime(&tm);
 }
 
-void    BitcoinExchange::parseCsvLine(const std::string& line)
+void BitcoinExchange::parseCsvLine(const std::string& line)
 {
-    std::istringstream  ss(line);
+    std::istringstream ss(line);
     std::string dateStr, priceStr;
 
     std::getline(ss, dateStr, ',');
     std::getline(ss, priceStr, ',');
 
-    time_t  date = parseToDate(dateStr);
-    float   price = std::atof(priceStr.c_str());
+    time_t date = parseToDate(dateStr);
+    float price = std::atof(priceStr.c_str());
 
     this->historyChart[date] = price;
 }
 
-void    BitcoinExchange::populateMapWithCsvData(void)
+void BitcoinExchange::populateMapWithCsvData(void)
 {
-    std::ifstream   file = openCsvFile();
-    std::string     line;
+    std::ifstream file;
+    openCsvFile(file);
+    std::string line;
 
     // Skips the header line at the beginning of csv file
     std::getline(file, line);
@@ -87,7 +81,7 @@ void    BitcoinExchange::populateMapWithCsvData(void)
 std::map<time_t, float>::const_iterator BitcoinExchange::findClosestDate(time_t date) const
 {
     std::map<time_t, float>::const_iterator it = historyChart.find(date);
-    int     dayInSeconds = 86400;
+    int dayInSeconds = 86400;
 
     while (it == historyChart.end() && date > 0)
     {
@@ -98,10 +92,9 @@ std::map<time_t, float>::const_iterator BitcoinExchange::findClosestDate(time_t 
     return it;
 }
 
-
-float   BitcoinExchange::getPriceSingleBtc(const std::string& dateStr) const
+float BitcoinExchange::getPriceSingleBtc(const std::string& dateStr) const
 {
-    time_t  date = parseToDate(dateStr);
+    time_t date = parseToDate(dateStr);
     if (date == -1)
         throw DateInvalid();
     std::map<time_t, float>::const_iterator it = findClosestDate(date);
@@ -112,16 +105,16 @@ float   BitcoinExchange::getPriceSingleBtc(const std::string& dateStr) const
     return -1;
 }
 
-float   BitcoinExchange::calculateTotalPrice(const float price, const float amountBtc) const
+float BitcoinExchange::calculateTotalPrice(const float price, const float amountBtc) const
 {
     if (price == -1)
-        return (std::cerr << "Price not available for the given date.\n", -1);
+        return (-1);
     return amountBtc * price;
 }
 
-std::ifstream   BitcoinExchange::openInputFile(const std::string filePath) const
+std::ifstream& BitcoinExchange::openInputFile(const std::string filePath, std::ifstream& file) const
 {
-    std::ifstream   file(filePath);
+    file.open(filePath.c_str());
 
     if (!file.is_open())
     {
@@ -132,10 +125,10 @@ std::ifstream   BitcoinExchange::openInputFile(const std::string filePath) const
     return file;
 }
 
-std::string  BitcoinExchange::extractDateFromInput(const std::string& line) const
+std::string BitcoinExchange::extractDateFromInput(const std::string& line) const
 {
-    std::istringstream  ss(line);
-    std::string         dateStr;
+    std::istringstream ss(line);
+    std::string dateStr;
 
     std::getline(ss, dateStr, '|');
 
@@ -144,36 +137,44 @@ std::string  BitcoinExchange::extractDateFromInput(const std::string& line) cons
     return dateStr;
 }
 
-float   BitcoinExchange::extractValueFromInput(const std::string& line) const
+float BitcoinExchange::extractValueFromInput(const std::string& line) const
 {
-    std::istringstream  ss(line);
-    std::string         dateStr, valueStr;
+    std::istringstream ss(line);
+    std::string dateStr, valueStr;
 
     std::getline(ss, dateStr, '|');
     std::getline(ss, valueStr, '|');
 
     valueStr.erase(valueStr.find_last_not_of(" \n\r\t") + 1);
 
-    float  value = std::atof(valueStr.c_str());
-    if (value <= 0 || value >= 1000)
+    float value = std::atof(valueStr.c_str());
+    if (value < 0 || value > 1000)
         throw ValueInvalid();
     return value;
 }
 
-void    BitcoinExchange::calculateBtcWorthFromFile(const std::string filePath)
+void BitcoinExchange::calculateBtcWorthFromFile(const std::string filePath)
 {
-    std::ifstream   file = openInputFile(filePath);
-    std::string     line;
-   
+    std::ifstream file;
+    openInputFile(filePath, file);
+    std::string line;
+
     std::getline(file, line);
 
     while (std::getline(file, line))
     {
         try
         {
-            std::string  date = extractDateFromInput(line);
-            float   amountBtc = extractValueFromInput(line);
-            float   TotalWorth = calculateTotalPrice(getPriceSingleBtc(date), amountBtc);
+            std::string date = extractDateFromInput(line);
+            float amountBtc = extractValueFromInput(line);
+            float TotalWorth = calculateTotalPrice(getPriceSingleBtc(date), amountBtc);
+
+            if (TotalWorth == -1)
+            {
+                std::cout << "On " << date << ", price not available" << std::endl;
+                continue;
+            }
+
 
             std::cout << "On " << date << ", the worth of " << amountBtc << " btc was " << TotalWorth << std::endl;
         }
@@ -199,3 +200,4 @@ BitcoinExchange::~BitcoinExchange()
 {
 
 }
+

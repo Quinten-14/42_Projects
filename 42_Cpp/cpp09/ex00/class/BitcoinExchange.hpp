@@ -32,7 +32,7 @@ class   BitcoinExchange
         std::map<time_t, float> historyChart;
 
     private:
-        std::ifstream   openCsvFile(void) const;
+        std::ifstream&  openCsvFile(std::ifstream& file) const;
         time_t          parseToDate(const std::string& dateStr) const;
         void            parseCsvLine(const std::string& line);
         void            populateMapWithCsvData(void);
@@ -40,7 +40,7 @@ class   BitcoinExchange
         float           calculateTotalPrice(const float price, const float amountBtc) const;
         std::string          extractDateFromInput(const std::string& line) const;
         float           extractValueFromInput(const std::string& line) const;
-        std::ifstream   openInputFile(const std::string filePath) const;
+        std::ifstream&  openInputFile(const std::string filePath, std::ifstream& file) const;
         std::map<time_t, float>::const_iterator findClosestDate(time_t date) const;
 };
 
