@@ -1,0 +1,90 @@
+version: "3.5"
+
+volumes:
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      device: /home/qraymaek/data/wordpress
+      o: bind
+      type: none
+
+  mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+      device: /home/qraymaek/data/mariadb
+      o: bind
+      type: none
+
+networks:
+  inception:
+    name: inception
+
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: ./requirements/nginx
+      args:
+        - DOMAIN=${DOMAIN}
+        - CERTS_=${CERTS_}
+    restart: always
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - inception
+    env_file:
+      - .env
+
+  wordpress:
+    container_name: wordpress
+    build:
+      context: ./requirements/wordpress
+      args:
+        - DOMAIN=${DOMAIN}
+        - DB_NAME=${DB_NAME}
+        - DB_HOST=${DB_HOST}
+        - USER=${USER}
+        - USER_PASS=${USER_PASS}
+        - USER_EMAIL=${USER_EMAIL}
+        - ADMIN_USER=${ADMIN_USER}
+        - ADMIN_PASS=${ADMIN_PASS}
+        - ADMIN_EMAIL=${ADMIN_EMAIL}
+        - TITLE=${TITLE}
+    restart: always
+    depends_on:
+      - mardiadb:
+          condition: service_healthy
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - inception
+    env_file:
+      - .env
+
+  mardiadb:
+    container_name: mardiadb
+    build:
+      context: ./requirements/mariadb
+      args:
+        - DB_NAME=${DB_NAME}
+        - ADMIN_USER=${ADMIN_USER}
+        - ADMIN_PASS=${ADMIN_PASS}
+        - ROOT_PASS=${ROOT_PASS}
+    restart: always
+    volumes:
+      - mariadb:/var/lib/mysql
+    networks:
+      - inception
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--silent"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
