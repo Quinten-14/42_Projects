@@ -17,7 +17,7 @@
 | CPP 00-04 | :heavy_check_mark: | &#10007;
 | Inceptions | &#10007; | &#10007;
 | Cpp 05 - 09 | :heavy_check_mark: | :heavy_check_mark:
-| Webserv | &#10007; | &#10007;
+| IRC | :heavy_check_mark: | &#10007;
 | Transcendence | &#10007; | &#10007;
 
 As you can see I am not fully done with the CommonCore yet but I am already pretty far. My goal is to finish in the 4th quarter of 2024 and to then apply for internships. But After my internship I still want to do a lot of the specialization projects.
