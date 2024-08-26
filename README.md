@@ -15,7 +15,7 @@
 | Netpractice | :heavy_check_mark: | N/A
 | Cub3D | :heavy_check_mark: | :heavy_check_mark:
 | CPP 00-04 | :heavy_check_mark: | &#10007;
-| Inceptions | &#10007; | &#10007;
+| Inceptions | :heavy_check_mark: | &#10007;
 | Cpp 05 - 09 | :heavy_check_mark: | :heavy_check_mark:
 | IRC | :heavy_check_mark: | &#10007;
 | Transcendence | &#10007; | &#10007;
